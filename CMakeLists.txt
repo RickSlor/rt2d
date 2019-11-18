@@ -5,6 +5,7 @@ project (rt2d)
 # delete CMakeCache.txt from the build directory when you edit these options
 ####################################################################
 OPTION(MAKE_START "Make RT2D start application" ON)
+OPTION(MAKE_SOF "Make RT2D SOF application" ON)
 OPTION(MAKE_DEMO "Make RT2D demo (tests) application" ON)
 OPTION(MAKE_CANVAS_DEMO "Make RT2D Canvas demo (tests) application" ON)
 OPTION(MAKE_FLOCKING "Make flocking application" ON)
@@ -145,6 +146,27 @@ file(
 	COPY ${CMAKE_SOURCE_DIR}/rt2d/fonts
 	DESTINATION ${CMAKE_BINARY_DIR}
 )
+
+####################################################################
+# start                                                            #
+####################################################################
+IF(MAKE_SOF)
+	add_executable(SOF
+		SOF/main.cpp
+		SOF/myentity.cpp
+		SOF/myentity.h
+		SOF/myscene.cpp
+		SOF/myscene.h
+	)
+	target_link_libraries(SOF
+		${ALL_GRAPHICS_LIBS}
+	)
+	# Copy assets to the build directory
+	file(
+		COPY SOF/assets
+		DESTINATION ${CMAKE_BINARY_DIR}
+	)
+ENDIF()
 
 ####################################################################
 # start                                                            #
