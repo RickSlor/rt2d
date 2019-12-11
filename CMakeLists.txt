@@ -148,15 +148,14 @@ file(
 )
 
 ####################################################################
-# start                                                            #
+# SOF                                                          #
 ####################################################################
 IF(MAKE_SOF)
 	add_executable(SOF
 		SOF/main.cpp
-		SOF/myentity.cpp
-		SOF/myentity.h
-		SOF/myscene.cpp
-		SOF/myscene.h
+		SOF/boid.cpp
+		SOF/flock.cpp
+		SOF/scene01.cpp
 	)
 	target_link_libraries(SOF
 		${ALL_GRAPHICS_LIBS}

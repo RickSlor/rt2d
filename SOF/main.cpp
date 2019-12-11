@@ -1,40 +1,26 @@
 /**
- * Copyright 2015 Your Name <you@yourhost.com>
+ * This file is part of RT2D, a 2D OpenGL framework.
  *
- * @brief Description of My Awesome Game.
- *
- * @file main.cpp
- *
- * @mainpage My Awesome Game
- *
- * @section intro Introduction
- *
- * Detailed description of My Awesome Game.
- *
- * There's even a second paragraph.
+ * - Copyright 2015 Rik Teerling <rik@onandoffables.com>
  */
 #include <rt2d/core.h>
+#include "scene01.h"
 
-#include "myscene.h"
-
-/// @brief main entry point
 int main( void )
 {
 	// Core instance
 	Core core;
 
-	// Scene01
-	MyScene* myscene = new MyScene(); // create Scene on the heap
-	while(myscene->isRunning()) { // check status of Scene every frame
-		core.run(myscene); // update and render the current scene
-		core.showFrameRate(5); // show framerate in output every n seconds
-	}
-	//core.cleanup(); // cleanup ResourceManager (Textures + Meshes, but not Shaders)
-	delete myscene; // delete Scene and everything in it from the heap to make space for next Scene
+	// scene handle
+	Scene* scene = nullptr;
 
-	// No need to explicitly clean up the core.
-	// As a local var, core will go out of scope and destroy Renderer->ResourceManager.
-	// ResourceManager destructor also deletes Shaders.
+	scene = new Scene01();		// create Scene on the heap
+	while(scene->isRunning()) {	// check status of Scene every frame
+		core.run(scene);		// update and render the current scene
+		core.showFrameRate(5);	// show framerate in output every 5 seconds
+	}
+	//core.cleanup();				// cleanup ResourceManager (Textures + Meshes, but not Shaders)
+	delete scene;				// delete Scene from heap to make space for next one
 
 	return 0;
 }

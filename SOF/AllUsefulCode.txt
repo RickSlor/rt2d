@@ -29,3 +29,8 @@ collision
 main.cpp
 colider.h
 )
+
+canvasdemo
+(
+main.cpp
+)
