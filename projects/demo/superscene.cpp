@@ -131,7 +131,7 @@ void SuperScene::update(float deltaTime)
 void SuperScene::moveCamera(float deltaTime)
 {
 	// ###############################################################
-	// Move Camera (Arrow up, down, left, right)
+	// Move Camera (Arrow up, down, left, right || w, a, s, d)
 	// ###############################################################
 	float speed = 600.0f; // 600 units / second
 
@@ -141,18 +141,19 @@ void SuperScene::moveCamera(float deltaTime)
 	// Direction
 	Vector2 direction = Vector2(0,0);
 
-	if (input()->getKey(KeyCode::Up)) {
+	if (input()->getKey(KeyCode::W)  || input()->getKey(KeyCode::Up)) {
 		direction -= up;
 	}
-	if (input()->getKey(KeyCode::Down)) {
+	if (input()->getKey(KeyCode::S) || input()->getKey(KeyCode::Down)) {
 		direction += up;
 	}
-	if (input()->getKey(KeyCode::Right)) {
+	if (input()->getKey(KeyCode::D) || input()->getKey(KeyCode::Right)) {
 		direction += right;
 	}
-	if (input()->getKey(KeyCode::Left)) {
+	if (input()->getKey(KeyCode::A) || input()->getKey(KeyCode::Left)) {
 		direction -= right;
 	}
+	
 	direction.normalize();
 	direction *= deltaTime * speed;
 	camera()->position += direction;

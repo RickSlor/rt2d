@@ -20,17 +20,17 @@ Boid::Boid()
 	_location = Vector2((SWIDTH/2)+(rand()%200)-100, ((SHEIGHT/2)+rand()%200)-100);
 
 	_mass = 0.75f;
-	_radius = 16.0;
-	_maxspeed = 6.0;
-	_maxforce = 0.05;			// Maximum steering force
-	_desiredseparation = 24.0f;	// minimum distance between each boid
-	_viewdistance = 125.0f;		// distance where other boids can be spotted so that we can move closer. higher = more coherence
+	_radius = 32.0;
+	_maxspeed = 4.0;
+	_maxforce = 0.02;			// Maximum steering force
+	_desiredseparation = 30.0f;	// minimum distance between each boid
+	_viewdistance = 150.0f;		// distance where other boids can be spotted so that we can move closer. higher = more coherence
 
-	_separationfactor = 1.5f;
+	_separationfactor = 3.0f;
 	_alignmentfactor = 1.0f;
-	_cohesionfactor = 1.0f;
+	_cohesionfactor = 1.5f;
 
-	_bordermode = 1;
+	_bordermode = 2;
 }
 
 
@@ -49,7 +49,7 @@ void Boid::updateBoid()
 	// Update velocity
 	_velocity += _acceleration;
 	// Limit speed
-	_velocity.limit(_maxspeed);
+	_velocity.limit(_maxspeed * 1.5);
 	_location += _velocity;
 	// Reset acceleration to 0 each cycle
 	_acceleration *= 0;
