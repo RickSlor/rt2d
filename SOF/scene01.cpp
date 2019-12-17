@@ -1,7 +1,5 @@
 /**
- * This file is part of RT2D, a 2D OpenGL framework.
- *
- * - Copyright 2015 Rik Teerling <rik@onandoffables.com>
+ * This file is part of SOF, made in RT2D
  */
 #include "scene01.h"
 
@@ -60,21 +58,4 @@ void Scene01::update(float deltaTime)
 	if (input()->getKeyUp(KeyCode::Escape)) {
 		this->stop();
 	}
-
-	// ###############################################################
-	// Make SuperScene do what it needs to do
-	// - Escape key stops Scene
-	// - Move Camera
-	// ###############################################################
-	SuperScene::update(deltaTime);
-	SuperScene::moveCamera(deltaTime);
-
-	// ###############################################################
-	// - link mouse to camera
-	// - account for camera offset (center of the screen)
-	// - update mouse cursor text
-	// ###############################################################
-	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH / 2;
-	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT / 2;
-
 }

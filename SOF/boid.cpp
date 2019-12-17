@@ -1,9 +1,5 @@
 /**
- * This file is part of RT2D, a 2D OpenGL framework.
- *
- * - Copyright 2015 Rik Teerling <rik@onandoffables.com>
- *
- * code ported from: http://natureofcode.com/book/chapter-6-autonomous-agents/
+ * This file is part of SOF, made in RT2D
  */
 #include <rt2d/rt2dconfig.h>
 #include "boid.h"
