@@ -154,8 +154,11 @@ IF(MAKE_SOF)
 	add_executable(SOF
 		SOF/main.cpp
 		SOF/boid.cpp
+		SOF/boid.h
 		SOF/flock.cpp
+		SOF/flock.h
 		SOF/scene01.cpp
+		SOF/scene01.h
 	)
 	target_link_libraries(SOF
 		${ALL_GRAPHICS_LIBS}
