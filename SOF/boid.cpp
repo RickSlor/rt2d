@@ -26,7 +26,7 @@ Boid::Boid()
 	_alignmentfactor = 1.0f;
 	_cohesionfactor = 1.5f;
 
-	_bordermode = 2;
+	_bordermode = 1.5;
 }
 
 
