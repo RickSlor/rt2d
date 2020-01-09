@@ -2,6 +2,7 @@
  * This file is part of SOF, made in RT2D
  */
 #include <rt2d/rt2dconfig.h>
+#include <rt2d/input.h>
 #include "boid.h"
 
 Boid::Boid()
@@ -11,9 +12,12 @@ Boid::Boid()
 	this->sprite()->color = WHITE;
 
 	int range = 4;
+
 	_acceleration = Vector2(0,0);
 	_velocity = Vector2((rand()%range)-range/2, (rand()%range)-range/2);
-	_location = Vector2((SWIDTH/2)+(rand()%200)-100, ((SHEIGHT/2)+rand()%200)-100);
+	_location = (getMouseX) + (getMouseY);
+
+	//Vector2((SWIDTH/2)+(rand()%200)-100, ((SHEIGHT/2)+rand()%200)-100);
 
 	_mass = 0.75f;
 	_radius = 32.0;
