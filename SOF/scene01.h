@@ -17,7 +17,6 @@ class Scene01: public Scene
 
 	private:
 		Flock* flock1;
-		Flock* flock2;
 };
 
 #endif /* SCENE01_H */

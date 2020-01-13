@@ -19,6 +19,7 @@ class Flock: public Entity
 		void boidColor(RGBAColor);
 		void boidWeights(float sf, float af, float cf);
 		void boidViewDistance(float vd);
+		void boidLoaction(float sf, float af, float cf);
 
 	private:
 		std::vector<Boid*> boids;

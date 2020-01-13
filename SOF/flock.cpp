@@ -79,3 +79,8 @@ void Flock::boidViewDistance(float vd)
 		boids[i]->_viewdistance = vd;
 	}
 }
+
+void Flock::boidLocation()
+{
+
+}

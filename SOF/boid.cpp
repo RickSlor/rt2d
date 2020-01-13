@@ -15,9 +15,8 @@ Boid::Boid()
 
 	_acceleration = Vector2(0,0);
 	_velocity = Vector2((rand()%range)-range/2, (rand()%range)-range/2);
-	_location = (getMouseX) + (getMouseY);
-
-	//Vector2((SWIDTH/2)+(rand()%200)-100, ((SHEIGHT/2)+rand()%200)-100);
+	_location = Vector2((SWIDTH / 2) + (rand() % 200) - 100, ((SHEIGHT / 2) + rand() % 200) - 100);
+	//(getMouseX)+(getMouseY);
 
 	_mass = 0.75f;
 	_radius = 32.0;
