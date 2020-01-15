@@ -80,7 +80,10 @@ void Flock::boidViewDistance(float vd)
 	}
 }
 
-void Flock::boidLocation()
+///////////////////////player assignment to flock///////////////////////////
+void Flock::boidPlayer(float p)
 {
 
 }
+
+

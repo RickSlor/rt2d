@@ -16,7 +16,7 @@ Boid::Boid()
 	_acceleration = Vector2(0,0);
 	_velocity = Vector2((rand()%range)-range/2, (rand()%range)-range/2);
 	_location = Vector2((SWIDTH / 2) + (rand() % 200) - 100, ((SHEIGHT / 2) + rand() % 200) - 100);
-	//(getMouseX)+(getMouseY);
+	
 
 	_mass = 0.75f;
 	_radius = 32.0;
@@ -28,6 +28,7 @@ Boid::Boid()
 	_separationfactor = 3.0f;
 	_alignmentfactor = 1.0f;
 	_cohesionfactor = 1.5f;
+	_player;
 
 	_bordermode = 1.5;
 }
@@ -129,6 +130,8 @@ void Boid::_borders(int width, int height)
 		  steer.limit(_maxforce*3); // force steering :)
 		  _applyForce(steer);
 		}
+
+		///////////////////////////borderlocation control////////////////////////////////
     } else if (_bordermode == 2) {
 		// as if in a fishtank with blind fish
 		if (_location.x < _radius) { _location.x = _radius; _velocity.x *= -1; }
@@ -211,7 +214,11 @@ Vector2 Boid::_align(std::vector<Boid*>& boids)
 
 	return Vector2(0,0);
 }
-
+////////////////////////////////possible location for mouse movement///////////////////////////////////////////
+Vector2 Boid::_player(std::vector<Boid*>& boids)
+{
+	
+}
 // Cohesion
 // For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
 Vector2 Boid::_cohesion(std::vector<Boid*>& boids)

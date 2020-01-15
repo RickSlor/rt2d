@@ -30,6 +30,7 @@ class Boid: public Entity
 		float _separationfactor;
 		float _alignmentfactor;
 		float _cohesionfactor;
+		float _player;
 		//float _xenofactor;
 
 	private:
@@ -43,6 +44,7 @@ class Boid: public Entity
 
 		Vector2 _separate(std::vector<Boid*>& boids);
 		Vector2 _align(std::vector<Boid*>& boids);
+		Vector2 _player(std::vector<Boid*>& boids);
 		Vector2 _cohesion(std::vector<Boid*>& boids);
 };
 

@@ -1,5 +1,14 @@
 (voorbeeld code)
 
+demo
+(
+	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH/2;
+	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT/2;
+)
+
+
+
+
 flocking
 (
 flock.cpp

@@ -11,6 +11,7 @@ Scene01::Scene01()
 	flock1->boidColor(BLUE);
 	flock1->boidWeights(1.8f, 1.0f, 1.7f);	// separation, alignment, cohesion
 	flock1->boidViewDistance(85.0f);		// _viewdistance
+	flock1->boidPlayer(true);
 	/*
 	// red
 	flock2 = new Flock(16);
