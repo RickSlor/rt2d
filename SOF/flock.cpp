@@ -5,6 +5,7 @@
 #include "flock.h"
 
 int Flock::_nextGuid = 0;
+int PFlock::_nextGuid1 = 0;
 
 Flock::Flock(int amount)
 	: Entity()
@@ -100,9 +101,6 @@ void PFlock::update(float deltaTime)
 		}
 		t.start();
 	}
-	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH / 2;
-	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT / 2;
-	Point2 mouse = Point2(mousex, mousey);
 }
 	/*
 	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH / 2;

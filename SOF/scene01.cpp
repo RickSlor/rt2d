@@ -11,7 +11,13 @@ Scene01::Scene01()
 	flock1->boidColor(RED);
 	flock1->boidWeights(1.8f, 1.0f, 1.7f);	// separation, alignment, cohesion
 	flock1->boidViewDistance(85.0f);		// _viewdistance
-
+	
+	//yellow
+	flock2 = new Flock(8);
+	flock2->boidColor(YELLOW);
+	flock2->boidWeights(1.8f, 1.0f, 1.7f);
+	flock2->boidViewDistance(85.0f);
+	
 		// green
 	pflock = new PFlock(16);
 	pflock->pboidColor(RGBAColor(46,223,223,255));
@@ -26,6 +32,7 @@ Scene01::Scene01()
 	flock2->boidViewDistance(70.0f);		// _viewdistance
 	*/
 	this->addChild(flock1);
+	this->addChild(flock2);
 	this->addChild(pflock);
 }
 
@@ -33,6 +40,7 @@ Scene01::Scene01()
 Scene01::~Scene01()
 {
 	delete flock1;
+	delete flock2;
 	delete pflock;
 }
 

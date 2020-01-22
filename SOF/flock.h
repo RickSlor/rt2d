@@ -42,7 +42,7 @@ public:
 private:
 	std::vector<PBoid*> pboids;
 	Timer t;
-	int _nextGuid1;
+	static int _nextGuid1;
 };
 
 #endif /* FLOCK_H */

@@ -11,10 +11,16 @@ PBoid::PBoid()
 	this->addSprite("assets/Player.tga", 0.25f, 0.50f);
 	this->sprite()->color = WHITE;
 
+	int mousex = input()->getMouseX() - SWIDTH / 2;
+	int mousey = input()->getMouseY() - SHEIGHT / 2;
+	Point2 mouse = Point2(mousex, mousey);
+
 	int range = 4;
 	_acceleration = Vector2(1, 1);
 	_velocity = Vector2((rand() % range) - range / 2, (rand() % range) - range / 2);
-	_location = Vector2((SWIDTH / 2) + (rand() % 200) - 100, ((SHEIGHT / 2) + rand() % 200) - 100);
+	_location =/*mouse*/Vector2((SWIDTH / 2) + (rand() % 200) - 100, ((SHEIGHT / 2) + rand() % 200) - 100);
+	
+	//Vector2((SWIDTH / 2) + (rand() % 200) - 100, ((SHEIGHT / 2) + rand() % 200) - 100);
 
 	_mass = 0.75f;
 	_radius = 32.0;
