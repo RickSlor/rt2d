@@ -3,20 +3,18 @@
  */
 #include <rt2d/rt2dconfig.h>
 #include <rt2d/input.h>
-#include "boid.h"
+#include "PBoid.h"
 
-Boid::Boid()
+PBoid::PBoid()
 	: Entity()
 {
-	this->addSprite("assets/boid.tga", 0.25f, 0.50f);
+	this->addSprite("assets/Player.tga", 0.25f, 0.50f);
 	this->sprite()->color = WHITE;
 
 	int range = 4;
-
-	_acceleration = Vector2(0,0);
-	_velocity = Vector2((rand()%range)-range/2, (rand()%range)-range/2);
+	_acceleration = Vector2(1, 1);
+	_velocity = Vector2((rand() % range) - range / 2, (rand() % range) - range / 2);
 	_location = Vector2((SWIDTH / 2) + (rand() % 200) - 100, ((SHEIGHT / 2) + rand() % 200) - 100);
-	
 
 	_mass = 0.75f;
 	_radius = 32.0;
@@ -33,17 +31,17 @@ Boid::Boid()
 }
 
 
-Boid::~Boid()
+PBoid::~PBoid()
 {
 
 }
 
-void Boid::update(float deltaTime)
+void PBoid::update(float deltaTime)
 {
 
 }
 
-void Boid::updateBoid()
+void PBoid::updatePBoid()
 {
 	// Update velocity
 	_velocity += _acceleration;
@@ -59,7 +57,7 @@ void Boid::updateBoid()
 }
 
 // We accumulate a new acceleration each time based on rules
-void Boid::flock(std::vector<Boid*>& boids)
+void PBoid::flock(std::vector<PBoid*>& boids)
 {
 	// call behavior of this boid
 	Vector2 sep = _separate(boids);	// Separation (don't collide with neighbors)
@@ -76,19 +74,19 @@ void Boid::flock(std::vector<Boid*>& boids)
 	_applyForce(ali);
 	_applyForce(coh);
 
-	_borders(SWIDTH,SHEIGHT);
+	_borders(SWIDTH, SHEIGHT);
 }
 
-void Boid::_applyForce(Vector2 force)
+void PBoid::_applyForce(Vector2 force)
 {
 	// We could add mass here if we want A = F / M
 	//acceleration += force;
-	_acceleration += (force/_mass);
+	_acceleration += (force / _mass);
 }
 
 // A method that calculates and applies a steering force towards a target
 // STEER = DESIRED - VELOCITY
-Vector2 Boid::_seek(Vector2 target)
+Vector2 PBoid::_seek(Vector2 target)
 {
 	Vector2 desired = Vector2(_location, target);	// A vector pointing from the location to the target
 	// Normalize desired and scale to maximum speed
@@ -101,7 +99,7 @@ Vector2 Boid::_seek(Vector2 target)
 }
 
 // Wraparound
-void Boid::_borders(int width, int height)
+void PBoid::_borders(int width, int height)
 {
 	if (_bordermode == 1) {
 		// as if in a fishtank with fish aware of the boundaries
@@ -109,54 +107,54 @@ void Boid::_borders(int width, int height)
 		float d = 125;
 
 		if (_location.x < d) {
-		  desired = Vector2(_maxspeed, _velocity.y);
+			desired = Vector2(_maxspeed, _velocity.y);
 		}
-		else if (_location.x > width-d) {
-		  desired = Vector2(-_maxspeed, _velocity.y);
+		else if (_location.x > width - d) {
+			desired = Vector2(-_maxspeed, _velocity.y);
 		}
 
-		if (_location.y < (d/2)) {
-		  desired = Vector2(_velocity.x, _maxspeed);
+		if (_location.y < (d / 2)) {
+			desired = Vector2(_velocity.x, _maxspeed);
 		}
-		else if (_location.y > height-(d/2)) {
-		  desired = Vector2(_velocity.x, -_maxspeed);
+		else if (_location.y > height - (d / 2)) {
+			desired = Vector2(_velocity.x, -_maxspeed);
 		}
 
 		if (desired.getLength() > 0) {
-		  desired.normalize();
-		  desired *= _maxspeed;
-		  Vector2 steer = desired - _velocity;
-		  steer.limit(_maxforce*3); // force steering :)
-		  _applyForce(steer);
+			desired.normalize();
+			desired *= _maxspeed;
+			Vector2 steer = desired - _velocity;
+			steer.limit(_maxforce * 3); // force steering :)
+			_applyForce(steer);
 		}
-
-		///////////////////////////borderlocation control////////////////////////////////
-    } else if (_bordermode == 2) {
+	}
+	else if (_bordermode == 2) {
 		// as if in a fishtank with blind fish
 		if (_location.x < _radius) { _location.x = _radius; _velocity.x *= -1; }
 		if (_location.y < _radius) { _location.y = _radius; _velocity.y *= -1; }
-		if (_location.x > width-_radius) { _location.x = width-_radius; _velocity.x *= -1; }
-		if (_location.y > height-_radius) { _location.y = height-_radius; _velocity.y *= -1; }
-	} else {
+		if (_location.x > width - _radius) { _location.x = width - _radius; _velocity.x *= -1; }
+		if (_location.y > height - _radius) { _location.y = height - _radius; _velocity.y *= -1; }
+	}
+	else {
 		// up out -> down in / left out -> right in
-		if (_location.x < -_radius) _location.x = width+_radius;
-		if (_location.y < -_radius) _location.y = height+_radius;
-		if (_location.x > width+_radius) _location.x = -_radius;
-		if (_location.y > height+_radius) _location.y = -_radius;
+		if (_location.x < -_radius) _location.x = width + _radius;
+		if (_location.y < -_radius) _location.y = height + _radius;
+		if (_location.x > width + _radius) _location.x = -_radius;
+		if (_location.y > height + _radius) _location.y = -_radius;
 	}
 }
 
 // Separation
 // Check for nearby boids and steer away
-Vector2 Boid::_separate(std::vector<Boid*>& boids)
+Vector2 PBoid::_separate(std::vector<PBoid*>& pboids)
 {
-	Vector2 steer = Vector2(0,0);
+	Vector2 steer = Vector2(0, 0);
 	int count = 0;
 	// For every boid in the system, check if it's too close
 	int i;
-	int s = boids.size();
-	for (i=0; i<s; i++) {
-		Boid* other = boids[i];
+	int s = pboids.size();
+	for (i = 0; i < s; i++) {
+		PBoid* other = pboids[i];
 		// Calculate vector pointing away from neighbor
 		Vector2 diff = Vector2(other->_location, _location);
 		float d = diff.getLength();
@@ -187,15 +185,15 @@ Vector2 Boid::_separate(std::vector<Boid*>& boids)
 
 // Alignment
 // For every nearby boid in the system, calculate the average velocity (and thus heading)
-Vector2 Boid::_align(std::vector<Boid*>& boids)
+Vector2 PBoid::_align(std::vector<PBoid*>& boids)
 {
-	Vector2 sum = Vector2(0,0);
+	Vector2 sum = Vector2(0, 0);
 	int count = 0;
 	int i;
 	int s = boids.size();
-	for (i=0; i<s; i++) {
-		Boid* other = boids[i];
-		float d = Vector2(_location,other->_location).getLength();
+	for (i = 0; i < s; i++) {
+		PBoid* other = boids[i];
+		float d = Vector2(_location, other->_location).getLength();
 		if ((d > 0) && (d < _viewdistance)) {
 			sum += other->_velocity;
 			count++;
@@ -211,20 +209,20 @@ Vector2 Boid::_align(std::vector<Boid*>& boids)
 		return steer;
 	}
 
-	return Vector2(0,0);
+	return Vector2(0, 0);
 }
-////////////////////////////////possible location for mouse movement///////////////////////////////////////////
+
 // Cohesion
 // For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
-Vector2 Boid::_cohesion(std::vector<Boid*>& boids)
+Vector2 PBoid::_cohesion(std::vector<PBoid*>& boids)
 {
-	Vector2 sum = Vector2(0,0);	 // Start with empty vector to accumulate all locations
+	Vector2 sum = Vector2(0, 0);	 // Start with empty vector to accumulate all locations
 	int count = 0;
 	int i;
 	int s = boids.size();
-	for (i=0; i<s; i++) {
-		Boid* other = boids[i];
-		float d = Vector2(_location,other->_location).getLength();
+	for (i = 0; i < s; i++) {
+		PBoid* other = boids[i];
+		float d = Vector2(_location, other->_location).getLength();
 		if ((d > 0) && (d < _viewdistance)) {
 			sum += other->_location;
 			count++;
@@ -236,5 +234,5 @@ Vector2 Boid::_cohesion(std::vector<Boid*>& boids)
 		return _seek(sum);	// Steer towards the location
 	}
 
-	return Vector2(0,0);
+	return Vector2(0, 0);
 }

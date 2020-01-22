@@ -157,6 +157,8 @@ IF(MAKE_SOF)
 		SOF/boid.h
 		SOF/flock.cpp
 		SOF/flock.h
+		SOF/PBoid.cpp
+		SOF/PBoid.h
 		SOF/scene01.cpp
 		SOF/scene01.h
 	)

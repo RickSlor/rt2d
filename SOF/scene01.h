@@ -17,6 +17,7 @@ class Scene01: public Scene
 
 	private:
 		Flock* flock1;
+		PFlock* pflock;
 };
 
 #endif /* SCENE01_H */

@@ -8,10 +8,16 @@ Scene01::Scene01()
 {
 	// green
 	flock1 = new Flock(16);
-	flock1->boidColor(BLUE);
+	flock1->boidColor(RED);
 	flock1->boidWeights(1.8f, 1.0f, 1.7f);	// separation, alignment, cohesion
 	flock1->boidViewDistance(85.0f);		// _viewdistance
-	flock1->boidPlayer(true);
+
+		// green
+	pflock = new PFlock(16);
+	pflock->pboidColor(RGBAColor(46,223,223,255));
+	pflock->pboidWeights(1.8f, 1.0f, 1.7f);	// separation, alignment, cohesion
+	pflock->pboidViewDistance(85.0f);		// _viewdistance
+
 	/*
 	// red
 	flock2 = new Flock(16);
@@ -20,12 +26,14 @@ Scene01::Scene01()
 	flock2->boidViewDistance(70.0f);		// _viewdistance
 	*/
 	this->addChild(flock1);
+	this->addChild(pflock);
 }
 
 
 Scene01::~Scene01()
 {
 	delete flock1;
+	delete pflock;
 }
 
 void Scene01::update(float deltaTime)
