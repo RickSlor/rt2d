@@ -8,7 +8,7 @@
 Boid::Boid()
 	: Entity()
 {
-	this->addSprite("assets/boid.tga", 0.25f, 0.50f);
+	this->addSprite("assets/Enemy.tga", 0.25f, 0.50f);
 	this->sprite()->color = WHITE;
 
 	int range = 4;

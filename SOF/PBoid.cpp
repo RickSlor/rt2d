@@ -11,6 +11,7 @@ PBoid::PBoid()
 	this->addSprite("assets/Player.tga", 0.25f, 0.50f);
 	this->sprite()->color = WHITE;
 
+	//Mouse location//
 	int mousex = input()->getMouseX() - SWIDTH / 2;
 	int mousey = input()->getMouseY() - SHEIGHT / 2;
 	Point2 mouse = Point2(mousex, mousey);
@@ -52,11 +53,11 @@ void PBoid::updatePBoid()
 	// Update velocity
 	_velocity += _acceleration;
 	// Limit speed
-	_velocity.limit(_maxspeed * 1.5);
+	_velocity.limit(_maxspeed * 1.0);
 	_location += _velocity;
 	// Reset acceleration to 0 each cycle
 	_acceleration *= 0;
-
+	
 	// update Entity position & rotation
 	this->position = _location;
 	this->rotation.z = this->_velocity.getAngle();
