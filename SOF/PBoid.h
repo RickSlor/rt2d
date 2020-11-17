@@ -36,10 +36,11 @@ private:
 	Vector2 _location;
 	Vector2 _velocity;
 	Vector2 _acceleration;
+	Point2 mouse;
 
 	int _bordermode;
 	void _borders(int width, int height);
-
+	void _mouse(int moX, int moY);
 
 	Vector2 _separate(std::vector<PBoid*>& boids);
 	Vector2 _align(std::vector<PBoid*>& boids);

@@ -8,13 +8,13 @@ Scene01::Scene01()
 {
 	// green
 	flock1 = new Flock(16);
-	flock1->boidColor(RED);
+	flock1->boidColor(RGBAColor(234, 46, 46, 255));
 	flock1->boidWeights(1.8f, 1.0f, 1.7f);	// separation, alignment, cohesion
 	flock1->boidViewDistance(85.0f);		// _viewdistance
 	
 	//yellow
 	flock2 = new Flock(8);
-	flock2->boidColor(YELLOW);
+	flock2->boidColor(RGBAColor(251, 254, 87, 255));
 	flock2->boidWeights(1.8f, 1.0f, 1.7f);
 	flock2->boidViewDistance(85.0f);
 	
@@ -46,7 +46,7 @@ Scene01::~Scene01()
 
 void Scene01::update(float deltaTime)
 {
-	if (input()->getKeyUp(KeyCode::Escape)) {
+	if (input()->getKeyUp(KeyCode::RightAlt)) {
 		this->stop();
 	}
 }
