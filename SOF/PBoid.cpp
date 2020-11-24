@@ -50,9 +50,6 @@ void PBoid::update(float deltaTime)
 
 void PBoid::updatePBoid()
 {
-	int mousex = input()->getMouseX() - SWIDTH / 2;
-	int mousey = input()->getMouseY() - SHEIGHT / 2;
-	Point2 mouse = Point2(mousex, mousey);
 	// Update velocity
 	_velocity += _acceleration;
 	// Limit speed
@@ -98,10 +95,7 @@ void PBoid::_applyForce(Vector2 force)
 // STEER = DESIRED - VELOCITY
 Vector2 PBoid::_seek(Vector2 target)
 {
-	int mousex = input()->getMouseX() - SWIDTH / 2;
-	int mousey = input()->getMouseY() - SHEIGHT / 2;
-	Point2 mouse = Point2(mousex, mousey);
-	Vector2 desired = Vector2(mouse, target);	// A vector pointing from the location to the target
+	Vector2 desired = Vector2(_location, target);	// A vector pointing from the location to the target
 	// Normalize desired and scale to maximum speed
 	desired.normalize();
 	desired *= _maxspeed;
@@ -114,7 +108,7 @@ Vector2 PBoid::_seek(Vector2 target)
 // Wraparound
 void PBoid::_borders(int width, int height)
 {
-	if (_bordermode == 2) {
+	if (_bordermode == 1) {
 		// as if in a fishtank with fish aware of the boundaries
 		Vector2 desired;
 		float d = 125;
@@ -141,7 +135,7 @@ void PBoid::_borders(int width, int height)
 			_applyForce(steer);
 		}
 	}
-	else if (_bordermode == 1) {
+	else if (_bordermode == 2) {
 		// as if in a fishtank with blind fish
 		if (_location.x < _radius) { _location.x = _radius; _velocity.x *= -1; }
 		if (_location.y < _radius) { _location.y = _radius; _velocity.y *= -1; }

@@ -103,7 +103,7 @@ Vector2 Boid::_seek(Vector2 target)
 // Wraparound
 void Boid::_borders(int width, int height)
 {
-	if (_bordermode == 2) {
+	if (_bordermode == 1) {
 		// as if in a fishtank with fish aware of the boundaries
 		Vector2 desired;
 		float d = 125;
@@ -131,7 +131,7 @@ void Boid::_borders(int width, int height)
 		}
 
 		///////////////////////////borderlocation control////////////////////////////////
-    } else if (_bordermode == 1) {
+    } else if (_bordermode == 2) {
 		// as if in a fishtank with blind fish
 		if (_location.x < _radius) { _location.x = _radius; _velocity.x *= -1; }
 		if (_location.y < _radius) { _location.y = _radius; _velocity.y *= -1; }

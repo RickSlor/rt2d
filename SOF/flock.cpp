@@ -82,7 +82,6 @@ void Flock::update(float deltaTime)
 		t.start();
 	}
 }
-
 void PFlock::update(float deltaTime)
 {
 	if (VSYNC) {
@@ -93,7 +92,6 @@ void PFlock::update(float deltaTime)
 			pboids[i]->updatePBoid();
 		}
 	}
-
 	else if (t.seconds() > (1.0f / 60.0f)) {
 		int i;
 		int s = pboids.size();
@@ -104,7 +102,6 @@ void PFlock::update(float deltaTime)
 		t.start();
 	}
 }
-
 	/*
 	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH / 2;
 	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT / 2;
