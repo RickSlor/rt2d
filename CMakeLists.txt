@@ -148,26 +148,26 @@ file(
 )
 
 ####################################################################
-# SOF                                                          #
+# Rebound                                                          #
 ####################################################################
-IF(MAKE_SOF)
-	add_executable(SOF
-		SOF/main.cpp
-		SOF/boid.cpp
-		SOF/boid.h
-		SOF/flock.cpp
-		SOF/flock.h
-		SOF/PBoid.cpp
-		SOF/PBoid.h
-		SOF/scene01.cpp
-		SOF/scene01.h
+IF(MAKE_Rebound)
+	add_executable(Rebound
+		Rebound/main.cpp
+		Rebound/boid.cpp
+		Rebound/boid.h
+		Rebound/flock.cpp
+		Rebound/flock.h
+		Rebound/PBoid.cpp
+		Rebound/PBoid.h
+		Rebound/scene01.cpp
+		Rebound/scene01.h
 	)
-	target_link_libraries(SOF
+	target_link_libraries(Rebound
 		${ALL_GRAPHICS_LIBS}
 	)
 	# Copy assets to the build directory
 	file(
-		COPY SOF/assets
+		COPY Rebound/assets
 		DESTINATION ${CMAKE_BINARY_DIR}
 	)
 ENDIF()
